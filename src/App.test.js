@@ -56,19 +56,14 @@ describe("<GithubEvent render method", () => {
 });
 
 describe("<Github Event functionalities", () => {
-  const handleClickSpy = sinon.spy(App.prototype, 'handleClick');
-
   it("simulate click event", () => {
-    wrapper.find("button").first().simulate("click", {
-        target: {
-          value: 'wathever'
-        },
-        preventDefault: () => null
-      }
-    );
-      expect(handleClickSpy.calledOnce)
+    let buttonClicked = false;
+    const handleClick = () => buttonClicked = true;
+    const wrapper = shallow(
+      <button onClick={ handleClick } />);
+    wrapper.find("button").first().simulate("click");
+      expect(buttonClicked)
       .toBeTruthy();
-      handleClickSpy.reset();
   });
 
   it("contains 3 states", () => {
