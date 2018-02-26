@@ -40,17 +40,17 @@ class App extends Component {
     const stuff = (this.state.error) ? (<p>{this.state.error}</p>) : (this.state.result.map((current) =>
         <div>
           <MuiThemeProvider>
-          <Card>
-              <CardHeader
-                title={current.created_at}
-                subtitle={current.repo.url}
-                avatar={current.actor.avatar_url}
-                key={current.id}
-              />
-              <CardTitle title={current.type} />
-              <CardText>
-              {current.type} by {current.actor.login}
-              </CardText>
+            <Card>
+                <CardHeader
+                  title={current.created_at}
+                  subtitle={current.repo.url}
+                  avatar={current.actor.avatar_url}
+                  key={current.id}
+                />
+                <CardTitle title={current.type} />
+                <CardText>
+                {current.type} by {current.actor.login}
+                </CardText>
           </Card>
           </MuiThemeProvider>
         </div>
