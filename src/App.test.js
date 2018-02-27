@@ -75,7 +75,19 @@ describe("<Github Event functionalities", () => {
     expect(wrapper.state()).toEqual(instanceState);
   });
 
-  // it("", () => {});
-  // it("", () => {});
-  // it("", () => {});
+  it("test the content of the input", () => {
+    const wrapper = shallow(<input value="I haver an input" />);
+
+    expect(wrapper.find("input").props().value).toContain("I haver an input");
+  });
+
+  it("simulate change event", () => {
+    let inputChanged = false;
+    const handleChange = () => inputChanged = true;
+    const wrapper = shallow(
+      <input onChange={ handleChange } />);
+    wrapper.find("input").first().simulate("change");
+      expect(inputChanged)
+      .toBeTruthy();
+  });
 });
