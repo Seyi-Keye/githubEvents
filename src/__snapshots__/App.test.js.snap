@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot test changes the state when input changes 1`] = `
+<div
+  className="App"
+>
+  <header
+    className="App-header"
+  >
+    <img
+      alt="logo"
+      className="App-logo"
+      src="logo.svg"
+    />
+    <h1
+      className="App-title"
+    >
+      Welcome to React
+    </h1>
+    <input
+      id="username"
+      onChange={[Function]}
+      placeholder="Enter github username"
+      value=""
+    />
+    <button
+      onClick={[Function]}
+    >
+       Search
+    </button>
+  </header>
+  <p
+    className="App-intro"
+  >
+    Enter your Github Username above and the result will be displayed here
+  </p>
+</div>
+`;
+
+exports[`Snapshot test changes the state when input changes 2`] = `
+<div
+  className="App"
+>
+  <header
+    className="App-header"
+  >
+    <img
+      alt="logo"
+      className="App-logo"
+      src="logo.svg"
+    />
+    <h1
+      className="App-title"
+    >
+      Welcome to React
+    </h1>
+    <input
+      id="username"
+      onChange={[Function]}
+      placeholder="Enter github username"
+      value=""
+    />
+    <button
+      onClick={[Function]}
+    >
+       Search
+    </button>
+  </header>
+  <p
+    className="App-intro"
+  >
+    Enter your Github Username above and the result will be displayed here
+  </p>
+</div>
+`;
+
+exports[`Snapshot test changes the state when input changes 3`] = `
+<div
+  className="App"
+>
+  <header
+    className="App-header"
+  >
+    <img
+      alt="logo"
+      className="App-logo"
+      src="logo.svg"
+    />
+    <h1
+      className="App-title"
+    >
+      Welcome to React
+    </h1>
+    <input
+      id="username"
+      onChange={[Function]}
+      placeholder="Enter github username"
+      value=""
+    />
+    <button
+      onClick={[Function]}
+    >
+       Search
+    </button>
+  </header>
+  <p
+    className="App-intro"
+  >
+    Enter your Github Username above and the result will be displayed here
+  </p>
+</div>
+`;
+
+exports[`Snapshot test renders correctly 1`] = `
+<div
+  className="App"
+>
+  <header
+    className="App-header"
+  >
+    <img
+      alt="logo"
+      className="App-logo"
+      src="logo.svg"
+    />
+    <h1
+      className="App-title"
+    >
+      Welcome to React
+    </h1>
+    <input
+      id="username"
+      onChange={[Function]}
+      placeholder="Enter github username"
+      value=""
+    />
+    <button
+      onClick={[Function]}
+    >
+       Search
+    </button>
+  </header>
+  <p
+    className="App-intro"
+  >
+    Enter your Github Username above and the result will be displayed here
+  </p>
+</div>
+`;
