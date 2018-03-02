@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import sinon from "sinon";
 import renderer from "react-test-renderer";
 
@@ -57,17 +57,6 @@ describe("<GithubEvent render method", () => {
 });
 
 describe("<Github Event functionalities", () => {
-  it("simulate click event", () => {
-    let buttonClicked = false;
-    const handleClick = () => (buttonClicked = true);
-    const wrapper = shallow(<button onClick={handleClick} />);
-    wrapper
-      .find("button")
-      .first()
-      .simulate("click");
-    expect(buttonClicked).toBeTruthy();
-  });
-
   it("contains 3 states", () => {
     const instanceState = {
       value: "",
@@ -84,14 +73,26 @@ describe("<Github Event functionalities", () => {
   });
 
   it("simulate change event", () => {
-    let inputChanged = false;
-    const handleChange = () => (inputChanged = true);
-    const wrapper = shallow(<input onChange={handleChange} />);
+    const handleChangeSpy = sinon.spy(App.prototype, "handleChange");
+    const wrapper = shallow(<input />);
     wrapper
       .find("input")
       .first()
-      .simulate("change");
-    expect(inputChanged).toBeTruthy();
+      .simulate("change", {
+        target: {
+          value: "typing"
+        }
+      });
+    expect(handleChangeSpy.calledOnce).toBeTruthy();
+  });
+
+  it("simulate click event", () => {
+    const handleClickSpy = sinon.spy(App.prototype, "handleClick");
+    wrapper
+      .find("button")
+      .first()
+      .simulate("click");
+    expect(handleClickSpy.calledOnce).toBeTruthy();
   });
 });
 
