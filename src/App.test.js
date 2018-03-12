@@ -2,8 +2,25 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { shallow, mount } from "enzyme";
-import sinon from "sinon";
 import renderer from "react-test-renderer";
+
+jest.mock("axios", () => ({
+  get: () =>
+    Promise.resolve({
+      data: [
+        {
+          id: "whatever_id",
+          created_at: "eafeawf",
+          repo: {
+            url: "should be whatever"
+          },
+          actor: {
+            avatar_url: "whatever"
+          }
+        }
+      ]
+    })
+}));
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
@@ -72,27 +89,53 @@ describe("<Github Event functionalities", () => {
     expect(wrapper.find("input").props().value).toContain("I haver an input");
   });
 
-  it("simulate change event", () => {
-    const handleChangeSpy = sinon.spy(App.prototype, "handleChange");
-    const wrapper = shallow(<input />);
-    wrapper
-      .find("input")
-      .first()
-      .simulate("change", {
-        target: {
-          value: "typing"
-        }
-      });
-    expect(handleChangeSpy.calledOnce).toBeTruthy();
+  fit("simulate change event", () => {
+    const handleChangeSpy = jest.spyOn(App.prototype, "handleChange");
+    const wrapper = mount(<App />);
+    const button = wrapper.find("input").first();
+    button.simulate("change", {
+      target: {
+        value: "typing"
+      }
+    });
+    expect(handleChangeSpy.mock.calls.length).toBe(1);
+    expect(handleChangeSpy).toHaveBeenCalled();
+    expect(wrapper.state().value).toBe("typing");
   });
-
-  it("simulate click event", () => {
-    const handleClickSpy = sinon.spy(App.prototype, "handleClick");
+  fit("simulate click event", cb => {
+    const handleClickSpy = jest.spyOn(App.prototype, "handleClick");
+    const wrapper = mount(<App />);
+    console.log(wrapper.state(), "this are the states");
+    const sampleData = {
+      data: [
+        {
+          id: "whatever_id",
+          created_at: "eafeawf",
+          repo: {
+            url: "should be whatever"
+          },
+          actor: {
+            avatar_url: "whatever"
+          }
+        }
+      ]
+    };
     wrapper
       .find("button")
       .first()
       .simulate("click");
-    expect(handleClickSpy.calledOnce).toBeTruthy();
+    console.log(
+      wrapper.state(),
+      "this are the states after, before setImmediate"
+    );
+
+    setImmediate(() => {
+      expect(wrapper.state().result).toEqual(sampleData.data);
+      cb();
+    });
+
+    // expect(handleClickSpy.calledOnce).toBeTruthy();
+    expect(handleClickSpy).toHaveBeenCalled();
   });
 });
 

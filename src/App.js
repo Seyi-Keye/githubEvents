@@ -29,6 +29,7 @@ class App extends React.Component {
       .get(`https://api.github.com/users/${value}/events`)
       .then(
         response => {
+          console.log(response, "this response");
           this.setState({ result: response.data, error: "" });
         },
         error => {
@@ -46,7 +47,7 @@ class App extends React.Component {
       <p>{this.state.error}</p>
     ) : (
       this.state.result.map(current => (
-        <div>
+        <div key={current.id}>
           <MuiThemeProvider>
             <Card>
               <CardHeader
